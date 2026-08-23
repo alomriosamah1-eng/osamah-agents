@@ -16,7 +16,11 @@
     "async:install": "npm --prefix integrations/async ci --ignore-scripts --no-audit --no-fund",
     "async:typecheck": "npm --prefix integrations/async run typecheck",
     "async:build": "npm --prefix integrations/async run build:renderer",
-    "async:desktop": "npm --prefix integrations/async run desktop"
+    "async:desktop": "npm --prefix integrations/async run desktop",
+    "presenton:install": "npm --prefix integrations/presenton ci --ignore-scripts --no-audit --no-fund && npm --prefix integrations/presenton/servers/nextjs ci --ignore-scripts --no-audit --no-fund",
+    "presenton:test": "npm --prefix integrations/presenton test",
+    "presenton:build": "npm --prefix integrations/presenton/servers/nextjs run build",
+    "starry:test": "npm --prefix integrations/starry-slides test"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",

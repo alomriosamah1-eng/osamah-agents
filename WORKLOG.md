@@ -34,3 +34,8 @@ After every successful phase: implement → test → update this file and the ph
 ## 2026-08-24 — Source-of-truth correction completed
 
 The third specification confirms the final role separation: Async IDE is the Development UI and engine; Presenton is the Presentation UI and engine; Starry Slides/StarryKit is an additional WYSIWYG/visual-authoring layer; OpenCode is Agent Core only. Async was cloned at commit `2c18a43c0711d1f991a6eabd913831f9c82794b0` and its root license was verified as Apache-2.0. The source-size and role audit is recorded in `docs/phase-reports/phase-01-original-source-audit.md` and the file-level owners are recorded in `UI_SOURCE_MAP.md`.
+
+
+## Phase 03 — Presenton and Starry Slides source integration completed
+
+The original Presenton source is now vendored under `integrations/presenton/` and the original Starry Slides/StarryKit source under `integrations/starry-slides/`. Presenton root tests passed, the original Next.js presentation workspace production build passed, and all Starry Slides plugin integrity tests passed. The original slide editor, Template V2 model, Konva surface, preview/export renderer, FastAPI server, Electron composition, canonical StarryKit skill, and credential-free MCP configuration are preserved. The Shell route and OpenCode core binding remain the next phases; no look-alike presentation editor was added.
