@@ -1,0 +1,37 @@
+# UI Source Map
+
+This map is the source of truth for the revised integration. Osamah Agent must load or wrap the original UI and engine owners listed here; it must not replace them with look-alike components. Entries are marked **planned** until the original source is present in the product workspace and the integration test proves it is running.
+
+| Osamah Agent area | Source project | Original component | Original source | Purpose | Key dependencies / engine | Integration target | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Development | [Async][1] | Application shell | `src/App.tsx` | Owns the real workspace lifecycle, shell layout, session state, settings, editor layout, and agent surfaces. | React, Electron IPC, Async main process | `apps/desktop/workspaces/development` | Planned |
+| Development | [Async][1] | Editor main panel | `src/EditorMainPanel.tsx` | Original code editor surface and editor orchestration. | Monaco, editor hooks, Async IPC | Development workspace | Planned |
+| Development | [Async][1] | Explorer | `src/EditorLeftSidebar.tsx`, `src/WorkspaceExplorer.tsx` | Original file explorer, project navigation, and workspace tree. | Async workspace/file index | Development workspace | Planned |
+| Development | [Async][1] | Editor tabs | `src/EditorTabBar.tsx`, `src/hooks/useEditorTabs.ts` | Original open-file tabs and active editor state. | Async editor state | Development workspace | Planned |
+| Development | [Async][1] | Terminal | `src/DrawerPtyTerminal.tsx`, `src/PtyTerminalView.tsx`, `main-src/terminalSessionService.ts`, `main-src/terminalSessionIpc.ts` | Original PTY-backed terminal and terminal IPC. | `node-pty`, Electron IPC | Development workspace | Planned |
+| Development | [Async][1] | Git | `src/GitScmVirtualLists.tsx`, `src/GitBranchPickerDropdown.tsx`, `main-src/gitService.ts` | Original source-control UI and Git service. | Git process integration, Async workspace binding | Development workspace | Planned |
+| Development | [Async][1] | Agent chat and tool activity | `src/AgentChatPanel.tsx`, `src/AgentActivityGroup.tsx`, `src/AgentToolCard.tsx`, `src/ToolApprovalCard.tsx` | Original agent conversation, streaming activity, tool cards, and approvals. | Async agent IPC | Shared Agent surface | Planned |
+| Development | [Async][1] | Composer | `src/ChatComposer.tsx`, `src/ComposerRichInput.tsx`, `src/ComposerSkillMenu.tsx` | Original lower prompt/composer UX for real agent requests. | Async streaming/chat hooks | Shared Osamah Agent composer wrapper | Planned |
+| Presentations | [Presenton][2] | Presentation route and workspace | `servers/nextjs/app/(presentation-generator)/presentation/page.tsx`, `servers/nextjs/app/(presentation-generator)/(dashboard)/layout.tsx` | Original presentation workflow and dashboard composition. | Next.js, FastAPI backend, Presenton state | Presentation workspace | Planned |
+| Presentations | [Presenton][2] | Editable slide surface | `servers/nextjs/components/slide-editor/surface/TemplateV2KonvaSlide.tsx` | Original WYSIWYG slide canvas, selection, transformations, and edit commit path. | React, Konva, Template V2 model | Presentation workspace | Planned |
+| Presentations | [Presenton][2] | Slide model and import | `servers/nextjs/components/slide-editor/types.ts`, `servers/nextjs/components/slide-editor/importing/template-v2-import.ts` | Original canonical slide/element types and generated-presentation adaptation. | Template V2 JSON | Presentation engine | Planned |
+| Presentations | [Presenton][2] | Preview and export rendering | `servers/nextjs/app/(presentation-generator)/custom-template/components/EachSlide/TemplateV2LayoutPreview.tsx`, `servers/nextjs/lib/template-v2-json-to-html.ts` | Original non-editor preview and HTML export paths. | Presenton rendering/export pipeline | Presentation engine | Planned |
+| Presentations | [Presenton][2] | Charts, tables, images, shapes, layout | `servers/nextjs/components/slide-editor/charts/`, `tables/`, `images/`, `shapes/`, `layout/` | Original element renderers and toolbars. | Konva, Chart.js, Tiptap, Presenton model helpers | Presentation workspace | Planned |
+| Presentations | [Presenton][2] | Generation/export backend | `servers/fastapi/`, `servers/nextjs/`, `electron/app/main.ts` | Original prompt/document generation, API, and desktop composition. | FastAPI, Next.js, Electron, export runtime | Presentation engine service | Planned |
+| Presentations | [Starry Slides][3] | Canonical visual-authoring skill | `skills/starrykit/SKILL.md` | Original design-brief, editable output, preview, bounded-edit, and visual-QA workflow. | Hosted MCP boundary, skill contract | Presentation Agent skill | Planned |
+| Presentations | [Starry Slides][3] | MCP integration contract | `skills/starrykit/references/mcp-workflow.md`, `.mcp.json`, `mcp.json` | Original remote authoring connector boundary without embedded credentials. | Hosted MCP endpoint | Optional adapter | Planned |
+| Agent Core | [OpenCode][4] | Session runner and context | `packages/core/src/session/`, `packages/core/src/system-context/`, `packages/core/src/instruction-context.ts` | Original sessions, context epochs, prompt flow, and context-source composition. | Effect services, SQLite, provider abstractions | Agent Core process | Planned |
+| Agent Core | [OpenCode][4] | Tools and permissions | `packages/core/src/tool/`, `packages/core/src/permission.ts`, `packages/core/src/policy.ts` | Original tool execution, permission checks, and approval model. | OpenCode core services | Agent Core process | Planned |
+| Agent Core | [OpenCode][4] | Skills and MCP | `packages/core/src/skill/`, `packages/core/src/plugin/skill.ts`, `packages/core/src/mcp/` | Original skill discovery/loading and MCP integration. | OpenCode plugin and MCP services | Agent Core process | Planned |
+| Agent Core | [OpenCode][4] | Provider/model resolution | `packages/core/src/provider.ts`, `packages/core/src/model.ts`, `packages/llm/` | Original provider and model catalog boundaries. | OpenCode LLM package | Agent Core process | Planned |
+
+## Rule
+
+A new component may be written in Osamah Agent only when it belongs to the integration shell, routing, shared context, branding, or a missing adapter. It must not duplicate an original editor, terminal, canvas, slide editor, agent engine, session system, skill system, or tool system that is available through this map.
+
+## References
+
+[1]: https://github.com/ZYKJShadow/Async "Async IDE repository"
+[2]: https://github.com/presenton/presenton "Presenton repository"
+[3]: https://github.com/StarryKit/starry-slides "Starry Slides / StarryKit repository"
+[4]: https://github.com/anomalyco/opencode "OpenCode repository"
