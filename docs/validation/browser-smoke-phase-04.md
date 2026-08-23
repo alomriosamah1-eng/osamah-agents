@@ -6,3 +6,6 @@ The UI is a functional React surface rather than a static image. The browser ext
 
 
 The Presentation Studio smoke test also succeeded. The shared top navigation switched modes, three slide thumbnails rendered, the canvas displayed the active slide with selectable elements, the Inspector/Layers tabs rendered, and the local agent composer was visible. The initial destructive-slide proposal appeared as a human-approval card with Cancel and Approve actions, confirming the safety boundary is visible in the UI.
+
+
+An interaction smoke test selected the title element and edited its text through the Inspector. The updated text appeared in both the Inspector and the canvas immediately, confirming that the selection state and canonical presentation update path are connected.
