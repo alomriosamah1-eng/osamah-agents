@@ -16,4 +16,21 @@ The application will provide a real desktop-oriented experience rather than a vi
 
 ## Development
 
-Implementation instructions, validation gates, licensing records, and integration decisions will be added as the corresponding phases are completed. See the phase-one audit at [`docs/phase-reports/phase-01-repository-audit.md`](docs/phase-reports/phase-01-repository-audit.md).
+Install dependencies and run the browser renderer with:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+The first slice can also be built and validated with:
+
+```bash
+pnpm typecheck
+pnpm test
+pnpm build
+```
+
+For the Linux-first Electron shell, start the Vite renderer and then launch Electron with `pnpm desktop`. The production shell loads the generated `dist/index.html`; the renderer keeps Node integration disabled and uses context isolation.
+
+Implementation instructions, validation gates, licensing records, and integration decisions are recorded in the phase reports. See the phase-one audit at [`docs/phase-reports/phase-01-repository-audit.md`](docs/phase-reports/phase-01-repository-audit.md), the reference study at [`docs/phase-reports/phase-02-integration-study.md`](docs/phase-reports/phase-02-integration-study.md), and the current functional slice at [`docs/phase-reports/phase-04-functional-slice.md`](docs/phase-reports/phase-04-functional-slice.md).

@@ -1,0 +1,31 @@
+{
+  "name": "osamah-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Development and Presentation Workspace",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/core.test.ts",
+    "lint": "tsc --noEmit",
+    "preview": "vite preview",
+    "desktop": "electron desktop/main.cjs",
+    "desktop:dev": "vite --host 127.0.0.1 & electron desktop/main.cjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "typescript": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "lucide-react": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "tsx": "latest",
+    "electron": "latest"
+  }
+}
