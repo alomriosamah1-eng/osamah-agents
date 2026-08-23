@@ -36,10 +36,12 @@ export default defineConfig({
 		host: '127.0.0.1',
 		port: 5173,
 		strictPort: true,
+		allowedHosts: ['.manus.computer', 'localhost', '127.0.0.1'],
 	},
 	preview: {
 		host: '127.0.0.1',
 		port: 4173,
 		strictPort: true,
+		allowedHosts: ['.manus.computer', 'localhost', '127.0.0.1'],
 	},
 });

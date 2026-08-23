@@ -8,7 +8,7 @@
     "dev": "npm --prefix integrations/async run dev",
     "build": "npm run async:main && npm run async:renderer",
     "typecheck": "tsc --noEmit && npm run async:typecheck && npm run opencode:typecheck",
-    "test": "npm run async:typecheck && npm run presenton:test && npm run starry:test",
+    "test": "node --test tests/source-integration.test.mjs && npm run async:typecheck && npm run presenton:test && npm run starry:test",
     "lint": "npm run typecheck",
     "preview": "npm --prefix integrations/async run preview",
     "desktop": "npm run async:desktop",

@@ -49,3 +49,8 @@ The pinned OpenCode monorepo is vendored under `integrations/opencode/`. Its ori
 ## 2026-08-24 — No-fake-UI migration completed
 
 The transitional root React/Vite mock renderer, deterministic local deck engine, duplicate slide editor, duplicate terminal, and duplicate agent panel were removed. The default scripts now validate and run the vendored original sources: Async, Presenton, Starry Slides, and OpenCode. Combined validation passed with root TypeScript, Async typecheck, OpenCode core typecheck, Presenton source tests, and Starry Slides integrity tests. The only product-owned renderer code remaining at the root is the integration bridge; the actual Development body is Async’s original `App`, and the Presentation route is Presenton’s original `/presentation` route.
+
+
+## Phase 05 — Integration validation completed
+
+The default source-backed validation now passes: root bridge typecheck, Async original renderer and main-process checks, OpenCode core typecheck, Presenton source tests, Presenton Next.js production build, Starry Slides integrity tests, and four no-duplicate/no-fake acceptance tests. Browser verification showed Async’s original welcome/workspace UI under the Osamah shell and Presenton’s original secure-instance route when its Next.js service was running. The smoke test did not enter credentials. Native PTY/Git/IPC behavior remains Electron-only, and the final missing boundary is supervised Presenton service startup plus full OpenCode event translation into Async’s original streaming contracts.
