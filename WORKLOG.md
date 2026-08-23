@@ -44,3 +44,8 @@ The original Presenton source is now vendored under `integrations/presenton/` an
 ## Phase 04 — Unified shell and OpenCode Core checkpoint completed
 
 The pinned OpenCode monorepo is vendored under `integrations/opencode/`. Its original core typecheck passed, and the original headless server responded through its real session API. A process-backed OpenCode bridge is registered inside Async’s original IPC boundary, exposing `opencode:health` and `opencode:prompt` without replacing Async’s native services. Async’s original renderer now boots the thin Osamah shell for the primary window, keeps its original auxiliary surfaces, loads the original Async app for Development, and routes Presentations to the original Presenton `/presentation` service. The remaining work is event translation from OpenCode into Async’s existing streaming/session/tool contracts and desktop lifecycle management for Presenton; these are tracked as integration work, not simulated fallbacks.
+
+
+## 2026-08-24 — No-fake-UI migration completed
+
+The transitional root React/Vite mock renderer, deterministic local deck engine, duplicate slide editor, duplicate terminal, and duplicate agent panel were removed. The default scripts now validate and run the vendored original sources: Async, Presenton, Starry Slides, and OpenCode. Combined validation passed with root TypeScript, Async typecheck, OpenCode core typecheck, Presenton source tests, and Starry Slides integrity tests. The only product-owned renderer code remaining at the root is the integration bridge; the actual Development body is Async’s original `App`, and the Presentation route is Presenton’s original `/presentation` route.

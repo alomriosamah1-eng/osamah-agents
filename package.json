@@ -7,15 +7,12 @@
   "scripts": {
     "dev": "npm --prefix integrations/async run dev",
     "build": "npm run async:main && npm run async:renderer",
-    "typecheck": "npm run prototype:typecheck && npm run async:typecheck",
-    "test": "tsx --test tests/core.test.ts",
+    "typecheck": "tsc --noEmit && npm run async:typecheck && npm run opencode:typecheck",
+    "test": "npm run async:typecheck && npm run presenton:test && npm run starry:test",
     "lint": "npm run typecheck",
     "preview": "npm --prefix integrations/async run preview",
     "desktop": "npm run async:desktop",
     "desktop:dev": "npm run dev",
-    "prototype:dev": "vite",
-    "prototype:build": "tsc -b && vite build",
-    "prototype:typecheck": "tsc --noEmit",
     "async:install": "npm --prefix integrations/async ci --ignore-scripts --no-audit --no-fund",
     "async:typecheck": "npm --prefix integrations/async run typecheck",
     "async:main": "npm --prefix integrations/async run build:main",
@@ -28,7 +25,8 @@
     "starry:test": "npm --prefix integrations/starry-slides test",
     "opencode:install": "bun install --cwd integrations/opencode --frozen-lockfile --ignore-scripts",
     "opencode:typecheck": "bun run --cwd integrations/opencode/packages/core typecheck",
-    "opencode:server": "bun run --cwd integrations/opencode/packages/opencode src/index.ts serve --hostname 127.0.0.1 --port 4096"
+    "opencode:server": "bun run --cwd integrations/opencode/packages/opencode src/index.ts serve --hostname 127.0.0.1 --port 4096",
+    "source:check": "npm run typecheck && npm run test && npm run presenton:build && npm run async:renderer && npm run async:main"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
