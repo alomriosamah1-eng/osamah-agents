@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import AsyncOriginalApp from './App';
+import OsamahApp from './OsamahApp';
 import { AppErrorBoundary } from './AppErrorBoundary';
 import { applyAppearanceSettingsToDom } from './appearanceSettings';
 import { APP_UI_STYLE, readPrefersDark, readStoredColorMode, resolveEffectiveScheme } from './colorMode';
@@ -78,13 +79,17 @@ createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<AppErrorBoundary>
 			<I18nProvider>
-				<App
-					appSurface={appSurface}
-					browserWindow={browserWindow}
-					initialThemeSnapshot={initialThemeSnapshot}
-					terminalWindow={terminalWindow}
-					terminalStartPage={terminalStartPage}
-				/>
+						{appSurface || browserWindow || terminalWindow ? (
+							<AsyncOriginalApp
+								appSurface={appSurface}
+								browserWindow={browserWindow}
+								initialThemeSnapshot={initialThemeSnapshot}
+								terminalWindow={terminalWindow}
+								terminalStartPage={terminalStartPage}
+							/>
+						) : (
+							<OsamahApp />
+						)}
 			</I18nProvider>
 		</AppErrorBoundary>
 	</StrictMode>

@@ -39,3 +39,8 @@ The third specification confirms the final role separation: Async IDE is the Dev
 ## Phase 03 — Presenton and Starry Slides source integration completed
 
 The original Presenton source is now vendored under `integrations/presenton/` and the original Starry Slides/StarryKit source under `integrations/starry-slides/`. Presenton root tests passed, the original Next.js presentation workspace production build passed, and all Starry Slides plugin integrity tests passed. The original slide editor, Template V2 model, Konva surface, preview/export renderer, FastAPI server, Electron composition, canonical StarryKit skill, and credential-free MCP configuration are preserved. The Shell route and OpenCode core binding remain the next phases; no look-alike presentation editor was added.
+
+
+## Phase 04 — Unified shell and OpenCode Core checkpoint completed
+
+The pinned OpenCode monorepo is vendored under `integrations/opencode/`. Its original core typecheck passed, and the original headless server responded through its real session API. A process-backed OpenCode bridge is registered inside Async’s original IPC boundary, exposing `opencode:health` and `opencode:prompt` without replacing Async’s native services. Async’s original renderer now boots the thin Osamah shell for the primary window, keeps its original auxiliary surfaces, loads the original Async app for Development, and routes Presentations to the original Presenton `/presentation` service. The remaining work is event translation from OpenCode into Async’s existing streaming/session/tool contracts and desktop lifecycle management for Presenton; these are tracked as integration work, not simulated fallbacks.

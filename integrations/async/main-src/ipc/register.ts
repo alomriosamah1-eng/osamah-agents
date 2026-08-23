@@ -134,6 +134,7 @@ import {
 } from '../lspSessionsByWebContents.js';
 import { registerClipboardHandlers } from './handlers/clipboardHandlers.js';
 import { registerAutoUpdateHandlers } from './handlers/autoUpdateHandlers.js';
+import { registerOpenCodeCoreIpc } from '../opencodeCoreBridge.js';
 import { registerUsageStatsHandlers } from './handlers/usageStatsHandlers.js';
 import { registerLspHandlers } from './handlers/lspHandlers.js';
 import { registerAppHandlers } from './handlers/appHandlers.js';
@@ -389,6 +390,7 @@ export function registerIpc(): void {
 	registerClipboardHandlers();
 	registerUsageStatsHandlers();
 	registerAutoUpdateHandlers();
+	registerOpenCodeCoreIpc();
 
 
 	const COMPOSER_ATTACH_MAX_BYTES = 8 * 1024 * 1024;

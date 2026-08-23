@@ -16,21 +16,26 @@ The application will provide a real desktop-oriented experience rather than a vi
 
 ## Development
 
-Install dependencies and run the browser renderer with:
+Install dependencies and run the original Async-based Osamah shell with:
 
 ```bash
 pnpm install
+pnpm async:install
+pnpm presenton:install
 pnpm dev
 ```
 
-The first slice can also be built and validated with:
+The source-backed environments can be validated with:
 
 ```bash
 pnpm typecheck
 pnpm test
-pnpm build
+pnpm async:renderer
+pnpm presenton:test
+pnpm presenton:build
+pnpm starry:test
 ```
 
-For the Linux-first Electron shell, start the Vite renderer and then launch Electron with `pnpm desktop`. To build or launch the original Async Development environment from the vendored source, use `pnpm async:install`, `pnpm async:typecheck`, `pnpm async:build`, and `pnpm async:desktop`. The Osamah shell loads the generated `dist/index.html`; its transitional center surface is being replaced by the original Async and Presenton workspaces in the integration phases. The Electron bridge keeps Node integration disabled and uses context isolation.
+The default `pnpm dev` and `pnpm desktop` commands now delegate to the original Async toolchain. Async’s renderer bootstraps the thin Osamah shell, loads the original Async application unchanged for Development, preserves Async’s auxiliary editor/terminal/browser windows, and loads the original Presenton `/presentation` route for Presentations when its Next.js service is available. Use `pnpm async:install`, `pnpm async:typecheck`, `pnpm async:main`, `pnpm async:renderer`, and `pnpm async:desktop` to operate the original Development environment directly. Use `pnpm presenton:install`, `pnpm presenton:test`, `pnpm presenton:build`, and `pnpm starry:test` for the original presentation sources. The legacy product-owned prototype remains available only under explicit `prototype:*` commands and is not the default product surface.
 
 Implementation instructions, validation gates, licensing records, and integration decisions are recorded in the phase reports. See the phase-one audit at [`docs/phase-reports/phase-01-repository-audit.md`](docs/phase-reports/phase-01-repository-audit.md), the reference study at [`docs/phase-reports/phase-02-integration-study.md`](docs/phase-reports/phase-02-integration-study.md), and the current functional slice at [`docs/phase-reports/phase-04-functional-slice.md`](docs/phase-reports/phase-04-functional-slice.md).
