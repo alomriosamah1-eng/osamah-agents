@@ -1,52 +1,30 @@
-# Phase 06 — Release and GitHub Publication
+# Phase 06 — Release Ledger and Source-First Handoff
 
 ## Status
 
 **Completed:** 2026-08-24
 
-## Published repository
+## Published checkpoints
 
-The complete implementation is published on the `main` branch of [alomriosamah1-eng/osamah-agents][1]. The working tree is clean and the local branch tracks `origin/main`.
+| Phase | Scope | Published commit | Verification |
+| --- | --- | --- | --- |
+| 01 | Original-source audit, source maps, architecture, worklog, licensing records | `7a37edc43318eeab9f520f6fca325a3006506721` | Maps and documentation published to `origin/main`. |
+| 02 | Pinned Async source vendored, OAuth credentials removed from unpublished history, original renderer typecheck/build | `bf2102517a3b7334d5643fb18c42a6c166c9be35` and map update `9ee18959da0e15db23194469f927686c5e631ac2` | Async typecheck and renderer build passed; sanitized push accepted by GitHub. |
+| 03 | Pinned Presenton source and Starry Slides source vendored, original presentation tests/build | `b275679785636e915b12179305a50f581753f26b` | Presenton root tests, Next.js production build, and Starry Slides integrity tests passed. |
+| 04 | OpenCode core vendored, Async IPC bridge, Osamah shell bootstrap, original-source default commands | `45240772e8786825ef5fb368928c17a598c380fd` and shell cleanup `5f38f559f65971a5391e003b653f3957749e152a` | OpenCode core typecheck, original server API probe, Async main/renderer builds, and combined validation passed. |
+| 05 | No-fake-UI migration, source acceptance tests, browser smoke evidence | `f23cc8f23f8878dc9037491d807601163a41fc57` | Four source acceptance tests passed; Async and Presenton original routes were observed in browser. |
+| 06 | Final maps, workflow policy, changelog, and this release ledger | Pending this checkpoint | Final clean-tree and remote verification are the release gate. |
 
-## Published stage history
+## Final architecture
 
-| Stage | Commit | Contents |
-| --- | --- | --- |
-| Phase 01 | `374ed0fd6749a5dd3dbbaba9942f9b26b78ff407` | Repository audit, workflow rules, initial README, and source observations. |
-| Phase 02 | `3e4be4d6c4b049c7af6cfdb698d14438e4a778ff` | Reference study, pinned commits, license record, and adapter boundaries. |
-| Phase 03 | `027a0e4adcae4925f67f3b622dd137763d848f9b` | Unified desktop architecture and functional-slice plan. |
-| Phase 04 | `e460bc01c2a1c1de8d96d9aceb457b285b240ceb` | React/Vite renderer, Electron shell, core contracts, UI, tests, and smoke-test record. |
-| Phase 05 | `60f00c14fc0f9b36ea27f5fdc1833b0b19de6361` | Validation report and browser interaction coverage. |
-| Cleanup | `67281cc4a2e44f8d0447c47997887728d490bde5` | Repository hygiene for generated TypeScript metadata. |
+Osamah Agent is a shell around **Async IDE** for Development, **Presenton** for Presentations, and **Starry Slides/StarryKit** where its visual-authoring contract is compatible. **OpenCode** is the central Agent Core. The product-owned code is limited to the shell, branding, routing, source maps, shared adapters, and context boundaries. The prior root-level mock UI and duplicate engines have been removed.
 
-## Delivered product surface
+## Known boundaries
 
-The repository now contains a dark-first Osamah Agent workspace with Development and Presentations modes, a shared project/context model, local deterministic agent activity, skill metadata from the three requested roots, provider metadata, editable project files, a terminal surface, a prompt-driven presentation generator, selectable slide elements, Inspector editing, add/delete slide flows, history records, and human approval for destructive slide deletion. The Linux-first Electron shell is configured with context isolation and disabled Node integration.
+The current source-backed implementation intentionally distinguishes source integration from full production orchestration. Async’s original Electron runtime is required for native PTY, filesystem, Git, and IPC behavior. Presenton’s original Next.js/FastAPI/Electron services must be supervised by the desktop lifecycle for generation, editing, and export. The OpenCode bridge starts the real headless server and sends real prompts, while complete translation of OpenCode event envelopes into Async’s streaming/tool/approval contracts remains the next engineering increment.
 
-## Reproducible validation
+No OAuth credential was retained from the Async source. Provider secrets must be supplied through runtime environment configuration or a secure settings boundary. The source maps and licensing records identify the Apache-2.0 and MIT obligations for each vendored project.
 
-From a clean checkout, run:
+## Release gate
 
-```bash
-pnpm install
-pnpm lint
-pnpm typecheck
-pnpm test
-pnpm build
-```
-
-The final validation run passed Electron syntax checks, whitespace checks, lint/typecheck, all 3 core tests, and the Vite production build. Browser smoke testing passed for both workspaces and for Inspector editing. The local Vite smoke server is temporary and is not part of the release artifact.
-
-## Known limitations
-
-This release is the first functional foundation, not the final full engine merger described in the original specification. OpenCode, Presenton, and StarryKit remain represented through product-owned contracts and documented adapter boundaries; their full runtimes are not vendored. Native filesystem permissions, a real subprocess terminal, OpenCode session transport, Presenton generation/export services, rich WYSIWYG drag/resize gestures, PPTX/PDF export, provider credential forms, and remote MCP authentication are the next integration stages.
-
-These limitations are explicit in the code and documentation; no button is presented as a completed external integration when it is only a local foundation.
-
-## Workflow completion
-
-Every completed stage has a report under `docs/phase-reports/`, and every report was included in a commit pushed to GitHub. The mandatory workflow is recorded in [`docs/WORKFLOW.md`](../WORKFLOW.md), and third-party boundaries are recorded in [`THIRD_PARTY_NOTICES.md`](../../THIRD_PARTY_NOTICES.md).
-
-## References
-
-[1]: https://github.com/alomriosamah1-eng/osamah-agents "Osamah Agent GitHub repository"
+The repository is ready for the next integration increment when `pnpm typecheck`, `pnpm test`, `pnpm build`, `pnpm presenton:build`, `pnpm async:main`, and `pnpm async:renderer` pass from a clean checkout, and the desktop lifecycle starts both original workspaces without replacing their UI or engine.
