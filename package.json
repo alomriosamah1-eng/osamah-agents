@@ -12,7 +12,11 @@
     "lint": "tsc --noEmit",
     "preview": "vite preview",
     "desktop": "electron desktop/main.cjs",
-    "desktop:dev": "vite --host 127.0.0.1 & electron desktop/main.cjs"
+    "desktop:dev": "vite --host 127.0.0.1 & electron desktop/main.cjs",
+    "async:install": "npm --prefix integrations/async ci --ignore-scripts --no-audit --no-fund",
+    "async:typecheck": "npm --prefix integrations/async run typecheck",
+    "async:build": "npm --prefix integrations/async run build:renderer",
+    "async:desktop": "npm --prefix integrations/async run desktop"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
